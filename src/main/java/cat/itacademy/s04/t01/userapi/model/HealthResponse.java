@@ -1,4 +1,4 @@
 package cat.itacademy.s04.t01.userapi.model;
 
-public record HealthCheck(String status) {
+public record HealthResponse(String status) {
 }
