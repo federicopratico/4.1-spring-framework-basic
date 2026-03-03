@@ -3,6 +3,7 @@ package cat.itacademy.s04.t01.userapi.controllers;
 import cat.itacademy.s04.t01.userapi.dtos.UserDTO;
 import cat.itacademy.s04.t01.userapi.exceptions.UserNotFoundException;
 import cat.itacademy.s04.t01.userapi.model.User;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -33,6 +34,7 @@ public class UserController {
     }
 
     @PostMapping("/users")
+    @ResponseStatus(HttpStatus.CREATED)
     public User add(@RequestBody UserDTO userDTO) {
         UUID newUserId = UUID.randomUUID();
         String newUserName = userDTO.name();
@@ -42,6 +44,11 @@ public class UserController {
         userDatabase.add(newUser);
 
         return newUser;
+    }
+
+    // used for test execution
+    public void clearDatabase() {
+        userDatabase.clear();
     }
 
 }
