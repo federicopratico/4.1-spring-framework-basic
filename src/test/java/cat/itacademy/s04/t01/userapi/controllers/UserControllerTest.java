@@ -43,8 +43,6 @@ class UserControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$").isArray())
                 .andExpect(jsonPath("$").isEmpty());
-        // Simula GET /users
-        // Espera un array buit
     }
 
     @Test
