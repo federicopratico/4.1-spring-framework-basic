@@ -1,5 +1,6 @@
 package cat.itacademy.s04.t01.userapi.service;
 
+import cat.itacademy.s04.t01.userapi.dtos.UserDTO;
 import cat.itacademy.s04.t01.userapi.exceptions.EmailAlreadyPresentException;
 import cat.itacademy.s04.t01.userapi.exceptions.UserNotFoundException;
 import cat.itacademy.s04.t01.userapi.model.User;
@@ -19,11 +20,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User createUser(User user) {
+    public User createUser(UserDTO user) {
         if(repository.existsByEmail(user.email()))
             throw new EmailAlreadyPresentException();
 
-        return repository.save(user);
+        UUID newUserId = UUID.randomUUID();
+        User newUser = new User(newUserId, user.name(), user.email());
+        return repository.save(newUser);
     }
 
     @Override
