@@ -2,6 +2,7 @@ package cat.itacademy.s04.t01.userapi.controllers;
 
 import cat.itacademy.s04.t01.userapi.dtos.UserDTO;
 import cat.itacademy.s04.t01.userapi.model.User;
+import cat.itacademy.s04.t01.userapi.repository.InMemoryUserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,11 +31,11 @@ class UserControllerTest {
     private ObjectMapper objectMapper;
 
     @Autowired
-    private UserController userController;
+    private InMemoryUserRepository repository;
 
     @BeforeEach
     void setUp() {
-        userController.clearDatabase();
+        repository.clear();
     }
 
     @Test
